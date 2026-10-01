@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>HomePath town page – prototype placeholder</title>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#faf6ef;color:#1f2d36}
+main{max-width:640px;margin:0 auto;padding:96px 32px;text-align:center}
+.k{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#6f4f17;font-weight:600;margin:0 0 14px}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.15;color:#243a47;margin:0}
+p{font-size:18px;line-height:1.55;color:#4a5b66}
+a{color:#243a47;text-underline-offset:5px;display:inline-flex;align-items:center;min-height:44px}
+:focus-visible{outline:3px solid #b88a3a;outline-offset:3px;border-radius:4px}
+</style></head><body><main>
+<p class="k">Prototype</p>
+<h1 id="t">Prototype: the town page would open here.</h1>
+<p id="j"></p>
+<p><a href="index.html#towns">← Back to the homepage</a></p>
+</main>
+<script src="towns.js"></script>
+<script>
+(function(){
+  var q=(location.search.match(/[?&]town=([^&]+)/)||[])[1]; q=q?decodeURIComponent(q):'';
+  var T=window.HP_TOWNS||{},hit=null;
+  Object.keys(T).forEach(function(n){if(T[n].slug===q)hit=n});
+  if(hit){document.getElementById('t').textContent='Prototype: the '+hit+' page would open here.';
+    document.getElementById('j').textContent='Court area: '+T[hit].jd+'. Prototype only. The real page and its address are defined by the HomePath site.';}
+  else{document.getElementById('j').textContent='No town was chosen.';}
+})();
+</script></body></html>
