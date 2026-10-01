@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>HomePath full homepage – design preview</title>
+<style>
+:root{
+  --ink:#1f2d36; --ink-soft:#4a5b66; --slate:#2f4858; --slate-dark:#243a47;
+  --ground:#f6f8f9; --line:#d5dde2; --card:#ffffff; --accent:#b88a3a;
+  --ochre-text:#7d5a1c; --ivory:#faf6ef; --sand:#f0e6d3; --sand-line:#ddcfb5; --sage:#a9b8a3; --sage-deep:#5d7360;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --wrap:1120px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--ivory);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--wrap);width:100%;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre-text);margin:0 0 14px;font-weight:600}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,46px);line-height:1.12;letter-spacing:-.012em;margin:0;color:var(--slate-dark);text-wrap:balance}
+.lede{font-size:clamp(17px,1.5vw,19px);line-height:1.55;color:var(--ink-soft);margin:16px 0 0;max-width:32em}
+
+/* ---------- HERO (Option A, centered) ---------- */
+.hero-shell{background:var(--ground);position:relative}
+header{display:flex;justify-content:space-between;align-items:center;max-width:var(--wrap);width:100%;margin:0 auto;padding:28px 32px}
+.wordmark{font-family:var(--serif);font-size:24px;letter-spacing:.01em;text-decoration:none;color:var(--slate-dark);min-height:44px;display:inline-flex;align-items:center}
+.talk{font-size:16px;color:var(--ink-soft);text-underline-offset:5px;text-decoration-thickness:1px;min-height:44px;display:inline-flex;align-items:center}
+.talk:hover{color:var(--slate-dark);text-decoration-thickness:2px}
+main.hero{max-width:var(--wrap);width:100%;margin:0 auto;padding:clamp(24px,6vh,72px) 32px 0;position:relative;min-height:clamp(560px,calc(100vh - 100px),720px);display:flex;flex-direction:column;text-align:center}
+.stage{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,68px);line-height:1.08;letter-spacing:-.015em;margin:0;max-width:15em;color:var(--slate-dark);text-wrap:balance}
+.sub{font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:var(--ink-soft);margin:22px 0 0;max-width:34em}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px;width:100%;max-width:720px}
+.choice{appearance:none;font:inherit;text-align:left;cursor:pointer;background:var(--card);color:var(--slate-dark);border:1.5px solid var(--line);border-radius:14px;padding:22px 24px;min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:clamp(19px,2vw,22px);font-family:var(--serif);box-shadow:0 1px 2px rgba(31,45,54,.06);transition:border-color .2s,box-shadow .2s,transform .2s,background .2s,color .2s}
+.choice .arrow{font-family:var(--sans);font-size:22px;transition:transform .2s;color:var(--accent)}
+.choice:hover{border-color:var(--slate);box-shadow:0 6px 18px rgba(31,45,54,.10);transform:translateY(-2px)}
+.choice:hover .arrow{transform:translateX(4px)}
+.choice:active{transform:translateY(0)}
+.choice[aria-pressed="true"]{background:var(--slate);border-color:var(--slate);color:#fff}
+.choice[aria-pressed="true"] .arrow{color:#fff}
+.choices[data-picked] .choice[aria-pressed="false"]{opacity:.6}
+.escape{margin:22px 0 0;font-size:16px}
+.escape a{color:var(--ink-soft);text-underline-offset:5px;min-height:44px;display:inline-flex;align-items:center}
+.escape a:hover{color:var(--slate-dark)}
+.next{margin-top:24px;max-width:720px;width:100%;padding:22px 0 0;position:relative;text-align:center}
+.next::before{content:"";position:absolute;top:0;left:50%;width:48px;margin-left:-24px;height:3px;background:var(--accent);border-radius:2px}
+.next[hidden]{display:none}
+.next p{margin:0 0 12px;font-size:18px;line-height:1.5;color:var(--ink)}
+.next .go{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--slate-dark);color:#fff;text-decoration:none;font-size:17px}
+.next .go:hover{background:var(--ink)}
+.next .proto{font-size:13px;color:var(--ink-soft);margin-top:10px}
+.next .back{margin-left:16px;font-size:16px;color:var(--ink-soft);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:5px;min-height:44px;font-family:inherit}
+.hero-spacer{flex:1;min-height:40px}
+.horizon{position:relative;display:block;width:100%;height:150px;margin-top:auto;z-index:1;pointer-events:none}
+.hero-foot{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:14px;color:var(--ink-soft);z-index:3;margin:0}
+.rise{animation:rise .5s ease both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- reveal + drift ---------- */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease;transition-delay:calc(var(--i,0)*110ms)}
+.js .reveal.in{opacity:1;transform:none}
+.drift{animation:drift 18s ease-in-out infinite alternate;transform-box:fill-box}
+.drift.slow{animation-duration:26s;animation-direction:alternate-reverse}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(10px,-5px)}}
+
+/* ---------- 2 START WHERE YOU ARE ---------- */
+.start{background:var(--ivory);position:relative;padding:56px 0 112px;overflow:hidden}
+.contour{position:absolute;pointer-events:none;z-index:0}
+.start .wrap{position:relative;z-index:1}
+.paths{margin:56px 0 0;position:relative}
+.path-svg{display:block;width:100%;height:auto;overflow:visible}
+.stops{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);margin-top:-6px}
+.stop a{display:block;text-decoration:none;padding:18px 24px 22px 0;border-radius:12px;position:relative;transition:transform .35s ease,background .35s ease}
+.stop a:hover{transform:translateY(-3px);background:rgba(255,255,255,.7)}
+.stop a:hover .go-arrow{transform:translateX(5px)}
+.stop h3{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2vw,26px);line-height:1.2;margin:0;color:var(--slate-dark);padding-left:0}
+.stop p{margin:8px 0 14px;font-size:16px;line-height:1.5;color:var(--ink-soft);max-width:15em}
+.stop .more{font-size:15px;color:var(--slate-dark);display:inline-flex;align-items:center;gap:8px;min-height:24px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;text-decoration-color:var(--sand-line)}
+.go-arrow{color:var(--accent);transition:transform .25s ease;display:inline-block}
+.wholepath{margin:44px 0 0;font-size:17px}
+.wholepath a{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:var(--slate-dark);text-underline-offset:6px;text-decoration-thickness:1px}
+.wholepath a:hover .go-arrow{transform:translateX(5px)}
+
+/* ---------- 3 WHAT HOMEPATH DOES ---------- */
+.does{background:var(--slate-dark);color:#f4f1ea;position:relative;overflow:hidden;padding:104px 0 0}
+.does h2{color:#fbf8f2;text-align:center}
+.does .eyebrow{color:#dcb978;text-align:center}
+.moments{position:relative;margin-top:68px;display:grid;grid-template-columns:repeat(3,1fr);gap:0 48px;padding-top:40px}
+.moments .line{position:absolute;top:6px;left:-32px;right:-32px;height:1px;background:linear-gradient(90deg,rgba(220,185,120,0),rgba(220,185,120,.9) 12%,rgba(220,185,120,.9) 88%,rgba(220,185,120,0));transform-origin:left center;transition:transform 1.8s cubic-bezier(.2,.6,.2,1)}
+.js .moments .line{transform:scaleX(0)}
+.js .moments.in .line{transform:scaleX(1)}
+.moment{position:relative}
+.moment::before{content:"";position:absolute;top:-40px;left:0;width:13px;height:13px;border-radius:50%;background:var(--slate-dark);border:2px solid #dcb978;margin-top:0}
+.moment h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.4vw,30px);line-height:1.18;margin:0 0 10px;color:#fbf8f2}
+.moment p{margin:0;font-size:17px;line-height:1.5;color:#c9d6dd;max-width:14em}
+.landscape{display:block;width:100%;height:auto;margin-top:56px}
+
+/* ---------- 5 OFFICIAL RESOURCES ---------- */
+.official{background:var(--sand);position:relative;padding:112px 0;overflow:hidden}
+.official .grid{display:grid;grid-template-columns:5fr 7fr;gap:72px;position:relative;z-index:1}
+.official .note{font-size:15px;color:var(--ink-soft);margin:28px 0 0;max-width:26em;line-height:1.55}
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--sand-line)}
+.row{border-bottom:1px solid var(--sand-line)}
+.row-in{display:grid;grid-template-columns:150px 1fr auto;gap:8px 28px;align-items:baseline;padding:26px 16px;margin:0 -16px;border-radius:12px;transition:transform .35s ease,background .35s ease}
+.row-in:hover{transform:translateY(-3px);background:rgba(255,255,255,.65)}
+.label{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre-text);font-weight:600;line-height:1.4}
+.row h3{font-family:var(--serif);font-weight:400;font-size:clamp(20px,1.9vw,23px);line-height:1.25;margin:0;color:var(--slate-dark)}
+.row p{margin:6px 0 0;font-size:16px;line-height:1.5;color:var(--ink-soft)}
+.contact{font-size:17px;color:var(--slate-dark);white-space:nowrap;text-underline-offset:5px;text-decoration-thickness:1px;min-height:44px;display:inline-flex;align-items:center;gap:8px}
+.contact:hover{text-decoration-thickness:2px}
+.contact:hover .go-arrow{transform:translateX(4px)}
+.official .small{font-size:14px;color:var(--ink-soft);margin:22px 0 0}
+
+/* ---------- 6 ATTORNEY ---------- */
+.attorney{background:var(--ivory);position:relative;padding:120px 0 72px;overflow:hidden}
+.attorney .grid{display:grid;grid-template-columns:5fr 6fr;gap:80px;align-items:center}
+.door{display:block;width:100%;max-width:440px;height:auto;justify-self:center}
+.attorney h2{max-width:13em}
+.finder{margin-top:34px;max-width:520px}
+.finder label{display:block;font-size:15px;color:var(--ink-soft);margin:0 0 8px}
+.field{display:flex;gap:10px;flex-wrap:wrap}
+.field input{flex:1 1 220px;min-width:0;font:inherit;font-size:18px;min-height:56px;padding:0 20px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink)}
+.field input::placeholder{color:#6b7a84}
+.field input:hover{border-color:var(--slate)}
+.field input:focus-visible{outline-offset:2px;border-color:var(--slate)}
+.btn{font:inherit;font-size:17px;min-height:56px;padding:0 28px;border-radius:999px;border:0;background:var(--slate-dark);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:background .2s}
+.btn:hover{background:var(--ink)}
+.btn:hover .go-arrow{transform:translateX(4px)}
+.btn .go-arrow{color:#e5c88f}
+.finder-msg{min-height:26px;margin:14px 0 0;font-size:16px;color:var(--ink-soft)}
+.browse{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-size:16px;color:var(--ink-soft);text-underline-offset:5px;text-decoration-thickness:1px}
+.browse:hover{color:var(--slate-dark);text-decoration-thickness:2px}
+.sep-note{margin:18px 0 0;font-size:14px;color:var(--ink-soft);max-width:34em;line-height:1.5}
+
+/* ---------- 7 TRUST (one quiet line) ---------- */
+.quiet{background:var(--ivory);padding:24px 0 112px;text-align:center;position:relative}
+.quiet p{font-family:var(--serif);font-size:clamp(19px,1.9vw,22px);line-height:1.65;color:var(--slate);max-width:36em;margin:0 auto}
+.quiet .rule{display:block;width:48px;height:3px;background:var(--accent);border-radius:2px;margin:0 auto 28px}
+
+/* ---------- 8 FOOTER ---------- */
+footer{background:var(--ink);color:#d6dee3;position:relative;padding:0 0 40px}
+.foot-horizon{display:block;width:100%;height:60px;margin-top:-1px;background:var(--ivory)}
+.foot-grid{display:grid;grid-template-columns:5fr 3fr 3fr;gap:56px;padding-top:56px}
+.foot-mark{font-family:var(--serif);font-size:28px;color:#fbf8f2;text-decoration:none;display:inline-block;min-height:44px}
+.foot-tag{margin:8px 0 0;font-size:16px;line-height:1.55;color:#aebcc4;max-width:20em}
+footer h2{font-family:var(--sans);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#dcb978;font-weight:600;margin:6px 0 14px}
+footer ul{list-style:none;margin:0;padding:0}
+footer li a{display:inline-flex;align-items:center;min-height:44px;font-size:16px;color:#d6dee3;text-decoration:none;position:relative}
+footer li a:hover{color:#fff;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.disclosure{margin:48px 0 0;padding-top:28px;border-top:1px solid rgba(214,222,227,.18);font-size:14px;line-height:1.65;color:#aebcc4;max-width:60em}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .official .grid,.attorney .grid{grid-template-columns:1fr;gap:48px}
+  .row-in{grid-template-columns:1fr;gap:6px}
+  .stops{grid-template-columns:1fr 1fr;gap:12px 24px}
+  .path-svg{display:none}
+  .stops{margin-top:40px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid > div:first-child{grid-column:1/-1}
+}
+@media (max-width:760px){
+  .moments{grid-template-columns:1fr;gap:44px;padding:0 0 0 36px;margin-top:48px}
+  .moments .line{top:0;bottom:0;left:6px;right:auto;width:1px;height:auto;background:rgba(220,185,120,.8);transform-origin:top center}
+  .js .moments .line{transform:scaleY(0)}
+  .js .moments.in .line{transform:scaleY(1)}
+  .moment::before{top:6px;left:-36px}
+  .does{padding-top:72px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  header{padding:18px 20px}
+  main.hero{padding:24px 20px 0}
+  .talk{display:none}
+  .choices{grid-template-columns:1fr;gap:12px;margin-top:32px}
+  .choice{min-height:72px;padding:18px 20px}
+  .start{padding:48px 0 80px}
+  .stops{grid-template-columns:1fr;gap:0;position:relative;padding-left:32px;margin-top:36px}
+  .stops::before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:1.5px;background:var(--sand-line)}
+  .stop{position:relative}
+  .stop::before{content:"";position:absolute;left:-32px;top:26px;width:12px;height:12px;border-radius:50%;background:var(--ivory);border:2.5px solid var(--accent)}
+  .stop a{padding:16px 8px 18px 0}
+  .official{padding:80px 0}
+  .attorney{padding:80px 0 48px}
+  .quiet{padding-bottom:80px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:32px 24px}
+  .contact{white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1!important;transform:none!important}
+  .js .moments .line{transform:none!important}
+}
+/* ?static=1 : for screenshots */
+html.static{scroll-behavior:auto}
+html.static *,html.static *::before,html.static *::after{animation:none!important;transition:none!important}
+html.static .reveal{opacity:1!important;transform:none!important}
+html.static .moments .line{transform:none!important}
+</style>
+</head>
+<body>
+<script>
+(function(){var d=document.documentElement,s=/[?&]static=1/.test(location.search);
+if(s)d.className+=' static';else d.className+=' js';})();
+</script>
+
+<div class="hero-shell">
+<header>
+  <a class="wordmark" href="#" aria-label="HomePath home">HomePath</a>
+  <a class="talk" href="#directory">Talk with an attorney</a>
+</header>
+
+<main class="hero">
+  <div class="stage">
+    <h1 class="rise">Have you received court papers about your mortgage?</h1>
+    <p class="sub rise d1">A plain-English guide for Connecticut homeowners.</p>
+
+    <div class="choices rise d2" id="choices" role="group" aria-label="Court papers">
+      <button class="choice" type="button" data-key="yes" aria-pressed="false"><span>Yes, I have papers</span><span class="arrow" aria-hidden="true">→</span></button>
+      <button class="choice" type="button" data-key="no" aria-pressed="false"><span>No papers yet</span><span class="arrow" aria-hidden="true">→</span></button>
+    </div>
+
+    <p class="escape rise d3"><a href="#directory">Talk with an attorney</a></p>
+
+    <div class="next" id="next" hidden aria-live="polite">
+      <p id="nextText"></p>
+      <a class="go" id="nextGo" href="#start">Continue</a><button class="back" id="back" type="button">Change my answer</button>
+      <p class="proto">Design preview. The next screen is not built yet.</p>
+    </div>
+  </div>
+  <div class="hero-spacer"></div>
+  <svg class="horizon" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 120 C 260 80, 520 130, 760 102 S 1100 70, 1200 88 L1200 150 L0 150 Z" fill="#faf6ef"/>
+    <path d="M0 120 C 260 80, 520 130, 760 102 S 1100 70, 1200 88" fill="none" stroke="#c9d3d9" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  </svg>
+  <p class="hero-foot">A directory, not a law firm.</p>
+</main>
+</div>
+
+<!-- 2 START WHERE YOU ARE -->
+<section class="start" id="start" aria-labelledby="start-h">
+  <svg class="contour" style="right:-120px;top:-60px;width:620px;height:420px" viewBox="0 0 620 420" fill="none" stroke="#e4d9c3" stroke-width="1.2" aria-hidden="true">
+    <path d="M40 330 C 120 210, 250 250, 330 160 S 520 60, 600 90"/>
+    <path d="M10 350 C 100 220, 240 280, 330 190 S 520 100, 620 130"/>
+    <path d="M70 310 C 140 200, 260 220, 330 130 S 520 20, 590 50"/>
+    <path d="M100 290 C 160 190, 270 190, 335 100 S 500 -20, 570 10"/>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow reveal">Start where you are</p>
+    <h2 id="start-h" class="reveal" style="--i:1">Pick the one that sounds most like today.</h2>
+
+    <div class="paths reveal" style="--i:2">
+      <svg class="path-svg" viewBox="0 0 1120 90" fill="none" aria-hidden="true">
+        <path d="M-10 82 C 10 80 14 64 28 64 S 230 36 308 40 S 520 68 588 60 S 800 20 868 28 S 1060 40 1130 30" stroke="#b9c4ca" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="1 7"/>
+        <g fill="#faf6ef" stroke="#b88a3a" stroke-width="2.5">
+          <circle cx="28" cy="64" r="7"/><circle cx="308" cy="40" r="7"/><circle cx="588" cy="60" r="7"/><circle cx="868" cy="28" r="7"/>
+        </g>
+        <g class="drift slow" stroke="#a9b8a3" stroke-width="1.4" stroke-linecap="round"><path d="M940 70 q 10 -10 20 0 q 10 -10 20 0"/></g>
+      </svg>
+      <ol class="stops">
+        <li class="stop"><a href="#"><h3>Behind on payments</h3><p>Missed a payment, or worried about the next one.</p><span class="more">What this means <span class="go-arrow" aria-hidden="true">→</span></span></a></li>
+        <li class="stop"><a href="#"><h3>Received a letter</h3><p>A notice from your lender. A letter is not court papers.</p><span class="more">What this means <span class="go-arrow" aria-hidden="true">→</span></span></a></li>
+        <li class="stop" id="court-papers"><a href="#"><h3>Received court papers</h3><p>A summons and a complaint. Start with what they say.</p><span class="more">What this means <span class="go-arrow" aria-hidden="true">→</span></span></a></li>
+        <li class="stop"><a href="#"><h3>Judgment or sale date</h3><p>A court decision, or a date on the calendar.</p><span class="more">What this means <span class="go-arrow" aria-hidden="true">→</span></span></a></li>
+      </ol>
+    </div>
+    <p class="wholepath reveal" style="--i:3"><a href="#">See the whole path, step by step <span class="go-arrow" aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+
+<!-- 3 WHAT HOMEPATH DOES -->
+<section class="does" aria-labelledby="does-h">
+  <div class="wrap">
+    <p class="eyebrow reveal">What HomePath does</p>
+    <h2 id="does-h" class="reveal" style="--i:1">A calmer way to find your footing.</h2>
+    <div class="moments reveal" style="--i:2">
+      <span class="line" aria-hidden="true"></span>
+      <div class="moment"><h3>Understand where you are</h3><p>Plain words for each stage.</p></div>
+      <div class="moment"><h3>See what applies</h3><p>Information that fits your stage.</p></div>
+      <div class="moment"><h3>Find help when you need it</h3><p>Official sources. Local attorneys.</p></div>
+    </div>
+  </div>
+  <svg class="landscape" viewBox="0 0 1440 280" preserveAspectRatio="xMidYMax slice" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <g class="drift" stroke="#dcb978" stroke-width="1.5" opacity=".85"><circle cx="210" cy="82" r="26"/><path d="M168 82 h-18 M252 82 h18 M210 40 v-16 M180 52 l-11 -11 M240 52 l11 -11" opacity=".55"/></g>
+    <g class="drift slow" stroke="#86a0ae" stroke-width="1.4" opacity=".7"><path d="M1010 70 q 22 -20 48 -6 q 22 -18 46 0 q 26 -2 30 12 h-124 q -6 -4 0 -6z"/></g>
+    <path d="M0 200 C 180 150 330 170 480 190 S 760 130 960 160 S 1280 120 1440 150" stroke="#6e8a99" stroke-width="1.5"/>
+    <path d="M0 230 C 220 190 420 220 640 205 S 1000 170 1200 195 S 1380 190 1440 180" stroke="#8fa6b3" stroke-width="1.5"/>
+    <path d="M0 262 C 260 236 520 258 760 240 S 1180 232 1440 246" stroke="#a9bcc7" stroke-width="1.5" opacity=".9"/>
+    <!-- winding path to the house -->
+    <path d="M610 280 C 650 262 760 262 770 240 S 690 214 760 200 S 900 190 950 168" stroke="#dcb978" stroke-width="1.5" stroke-dasharray="2 8"/>
+    <path d="M590 280 C 640 258 730 256 744 238" stroke="#6e8a99" stroke-width="1.2" opacity=".6"/>
+    <!-- house -->
+    <g stroke="#c9d6dd" stroke-width="1.6">
+      <path d="M930 170 v-34 h60 v34"/><path d="M922 138 L960 108 L998 138"/><path d="M984 124 v-18 h8 v22"/>
+      <rect x="950" y="146" width="12" height="24" rx="1" fill="#dcb978" fill-opacity=".35" stroke="#dcb978"/>
+      <rect x="970" y="146" width="12" height="12" rx="1" stroke="#dcb978"/>
+    </g>
+    <!-- trees -->
+    <g stroke="#86a0ae" stroke-width="1.4"><path d="M1060 172 v-26"/><circle cx="1060" cy="134" r="14"/><path d="M1088 176 v-18"/><circle cx="1088" cy="148" r="10"/></g>
+    <g stroke="#86a0ae" stroke-width="1.4"><path d="M330 188 v-24"/><circle cx="330" cy="152" r="13"/><path d="M362 190 v-14"/><circle cx="362" cy="166" r="8"/></g>
+    <!-- signpost -->
+    <g stroke="#c9d6dd" stroke-width="1.6"><path d="M760 244 v-44"/><path d="M760 206 h26 l8 -6 l-8 -6 h-26z" stroke="#dcb978"/></g>
+  </svg>
+</section>
+
+<!-- 5 OFFICIAL CT RESOURCES -->
+<section class="official" aria-labelledby="off-h">
+  <svg class="contour" style="left:-160px;bottom:-120px;width:620px;height:420px" viewBox="0 0 620 420" fill="none" stroke="#e1d3b7" stroke-width="1.3" aria-hidden="true">
+    <path d="M20 320 C 120 200, 250 280, 340 190 S 530 110, 640 150"/>
+    <path d="M0 360 C 110 230, 240 320, 340 230 S 530 160, 650 200"/>
+    <path d="M50 280 C 140 180, 260 240, 340 150 S 530 60, 620 100"/>
+  </svg>
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow reveal">Official Connecticut resources</p>
+      <h2 id="off-h" class="reveal" style="--i:1">Straight from the source.</h2>
+      <p class="lede reveal" style="--i:2">These are state agencies and nonprofit organizations. They run their own programs. HomePath does not.</p>
+      <p class="note reveal" style="--i:3">Phone numbers and hours can change. Check each source before you rely on it.</p>
+    </div>
+    <div>
+      <ul class="rows reveal" style="--i:2">
+        <li class="row"><div class="row-in">
+          <span class="label">State agency</span>
+          <div><h3>Department of Banking foreclosure hotline</h3><p>Guidance and referrals about foreclosure. Weekdays, 8 to 5.</p></div>
+          <a class="contact" href="tel:+18774728313">1-877-472-8313</a>
+        </div></li>
+        <li class="row"><div class="row-in">
+          <span class="label">Nonprofit legal aid</span>
+          <div><h3>Statewide Legal Services of Connecticut</h3><p>Legal advice and referrals. There are income rules.</p></div>
+          <a class="contact" href="tel:+18004533320">1-800-453-3320</a>
+        </div></li>
+        <li class="row"><div class="row-in">
+          <span class="label">State courts</span>
+          <div><h3>Connecticut Judicial Branch</h3><p>Court forms and the Foreclosure Mediation Program.</p></div>
+          <a class="contact" href="#">jud.ct.gov <span class="go-arrow" aria-hidden="true">→</span></a>
+        </div></li>
+        <li class="row"><div class="row-in">
+          <span class="label">State housing agency</span>
+          <div><h3>Connecticut Housing Finance Authority</h3><p>Housing counseling, and a loan program with its own rules.</p></div>
+          <a class="contact" href="#">chfa.org <span class="go-arrow" aria-hidden="true">→</span></a>
+        </div></li>
+      </ul>
+      <p class="small reveal" style="--i:3"><a href="#" style="text-underline-offset:5px;display:inline-flex;align-items:center;min-height:44px">More official resources</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 ATTORNEY ACCESS -->
+<section class="attorney" id="directory" aria-labelledby="att-h">
+  <div class="wrap grid">
+    <svg class="door reveal" viewBox="0 0 440 380" fill="none" stroke="#2f4858" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 330 C 120 322 320 338 420 328" stroke="#b9c4ca"/>
+      <!-- house -->
+      <path d="M96 330 V170 H344 V330"/>
+      <path d="M78 176 L220 70 L362 176"/>
+      <path d="M290 112 V70 h28 v62"/>
+      <!-- window -->
+      <rect x="128" y="206" width="64" height="58" rx="3"/><path d="M160 206 v58 M128 235 h64" stroke-width="1.3"/>
+      <!-- open door with warm light -->
+      <path d="M236 330 V214 a38 38 0 0 1 76 0 V330" fill="#b88a3a" fill-opacity=".16"/>
+      <path d="M236 330 L212 322 V222 a24 24 0 0 1 24 -22" stroke="#b88a3a"/>
+      <path d="M200 330 L150 380 H370 L312 330" stroke="#b88a3a" stroke-opacity=".0"/>
+      <!-- path -->
+      <path d="M244 330 C 250 346 226 352 240 372 M304 330 C 316 348 296 356 312 376" stroke="#b88a3a" stroke-dasharray="2 8"/>
+      <!-- lamp -->
+      <path d="M330 232 v14" stroke-width="1.4"/><circle cx="330" cy="226" r="5" fill="#b88a3a" fill-opacity=".4" stroke="#b88a3a"/>
+      <!-- shrubs -->
+      <g stroke="#5d7360"><path d="M62 330 q-4 -26 14 -34 q18 8 12 34" fill="#a9b8a3" fill-opacity=".35"/><path d="M356 330 q-2 -20 12 -26 q14 6 10 26" fill="#a9b8a3" fill-opacity=".35"/></g>
+      <g class="drift slow" stroke="#a9b8a3"><path d="M90 60 q9 -9 18 0 q9 -9 18 0"/><path d="M130 40 q7 -7 14 0 q7 -7 14 0"/></g>
+    </svg>
+    <div class="reveal" style="--i:1">
+      <p class="eyebrow">Attorney access</p>
+      <h2 id="att-h">When you're ready to speak with an attorney</h2>
+      <p class="lede">Search by town or ZIP code. Whether to reach out is your choice.</p>
+      <form class="finder" id="finder" novalidate>
+        <label for="loc">Town or ZIP code</label>
+        <div class="field">
+          <input id="loc" name="loc" type="text" inputmode="text" autocomplete="postal-code" placeholder="Hartford or 06103">
+          <button class="btn" type="submit">Find an attorney <span class="go-arrow" aria-hidden="true">→</span></button>
+        </div>
+        <p class="finder-msg" id="finderMsg" role="status" aria-live="polite"></p>
+        <a class="browse" href="#">Browse by court district</a>
+        <p class="sep-note">Attorney listings are kept separate from the guide. HomePath does not rank attorneys.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 7 TRUST: one quiet line -->
+<section class="quiet" aria-label="About this guide">
+  <div class="wrap reveal">
+    <span class="rule" aria-hidden="true"></span>
+    <p>Made for Connecticut homeowners, in plain language. We name our sources. This is general information, not legal advice.</p>
+  </div>
+</section>
+
+<!-- 8 FOOTER -->
+<footer>
+  <svg class="foot-horizon" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" style="background:var(--ink)">
+    <path d="M0 0 H1200 V30 C 1000 54 880 8 640 28 S 260 52 0 22 Z" fill="#faf6ef" transform="rotate(0)"/>
+    <path d="M0 22 C 260 52 420 14 640 28 S 1000 54 1200 30" fill="none" stroke="#b88a3a" stroke-opacity=".7" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+  </svg>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="foot-mark" href="#">HomePath</a>
+        <p class="foot-tag">A plain-English guide for Connecticut homeowners.</p>
+      </div>
+      <nav aria-label="Homeowners">
+        <h2>Homeowners</h2>
+        <ul>
+          <li><a href="#">Connecticut foreclosure help</a></li>
+          <li><a href="#">Court forms</a></li>
+          <li><a href="#">Attorney costs</a></li>
+          <li><a href="#">Official resources</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="HomePath">
+        <h2>HomePath</h2>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Methodology</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">For attorneys</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="disclosure">HomePath is a guide and attorney directory. It is not a law firm and does not give legal advice. It is not part of the Connecticut Judicial Branch or any state agency. The information here is general and may not fit your situation. Operated by Seekr Media LLC. © 2026</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* hero (from Option A) */
+  var copy={
+    yes:"Next: a short guide to reading court papers and what usually comes next.",
+    no:"Next: a short guide to where you are in the process and your options."
+  };
+  var dest={yes:"#court-papers",no:"#start"};
+  var btns=[].slice.call(document.querySelectorAll('.choice')),
+      box=document.getElementById('choices'),
+      next=document.getElementById('next'),
+      text=document.getElementById('nextText'),
+      go=document.getElementById('nextGo');
+  function pick(k){
+    btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.key===k?'true':'false')});
+    box.setAttribute('data-picked',k);
+    text.textContent=copy[k];
+    go.setAttribute('href',dest[k]);
+    next.hidden=false;
+    go.focus({preventScroll:false});
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){pick(b.dataset.key)})});
+  document.getElementById('back').addEventListener('click',function(){
+    btns.forEach(function(b){b.setAttribute('aria-pressed','false')});
+    box.removeAttribute('data-picked');next.hidden=true;btns[0].focus();
+  });
+  var h=location.hash.replace('#','');if(copy[h])pick(h);
+
+  /* scroll reveal */
+  var els=[].slice.call(document.querySelectorAll('.reveal'));
+  var d=document.documentElement;
+  if(d.classList.contains('static')||!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(e){e.classList.add('in')});
+  }else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(e){io.observe(e)});
+  }
+
+  /* attorney finder: placeholder only */
+  var f=document.getElementById('finder'),msg=document.getElementById('finderMsg'),loc=document.getElementById('loc');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=loc.value.trim();
+    msg.textContent=v?('Design preview: the attorney search is not built yet. You entered "'+v+'".'):'Enter a town or ZIP code to continue.';
+  });
+})();
+</script>
+</body>
+</html>
